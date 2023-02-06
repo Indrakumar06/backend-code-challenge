@@ -1,2 +1,47 @@
-type Query {
+
+input User {
+    id: Int
+    firstName: String
+    lastName: String
+    username: String
+    password: String
+    address: Address
 }
+
+type NewUser {
+    id: Int
+    firstName: String
+    lastName: String
+    username: String
+    password: String
+    address: NewAddress
+}
+
+input Address {
+    id: Int
+    address1: String
+    address2: String
+    city: String
+    state: String
+    postal: String
+}
+
+type NewAddress {
+    id: Int
+    address1: String
+    address2: String
+    city: String
+    state: String
+    postal: String
+}
+
+type Query {
+    GetUser(id: Int): NewUser
+}
+
+type Mutation {
+    updateUser(user: User): NewUser
+
+}
+
+

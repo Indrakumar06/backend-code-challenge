@@ -41,4 +41,23 @@ public class UserService {
 
     }
 
+
+    public int save(User user) {
+        try {
+
+            return template.update(
+                "UPDATE User " +
+                    "SET firstname= ?, " +
+                    "lastname= ?, " +
+                    "username= ?, " +
+                    "password= ? " +
+                    "WHERE id= ? ",
+                new UserRowMapper(),
+                user.getFirstName(), user.getLastName(), user.getUsername(), user.getPassword(), user.getId()
+            );
+        } catch (EmptyResultDataAccessException e) {
+            return 0;
+        }
+    }
+
 }
