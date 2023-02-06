@@ -19,8 +19,8 @@ public class UserController {
     }
 
     @PostMapping("v1/user")
-    public ResponseEntity save(@RequestBody User user) {
-        return  userService.save(user) > 0 ? new ResponseEntity( HttpStatus.ACCEPTED) : new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity update(@RequestBody User user) {
+        return  userService.update(user) > 0 ? new ResponseEntity( HttpStatus.ACCEPTED) : new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }

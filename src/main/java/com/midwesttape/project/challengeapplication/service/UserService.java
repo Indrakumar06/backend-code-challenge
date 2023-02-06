@@ -42,7 +42,7 @@ public class UserService {
     }
 
 
-    public int save(User user) {
+    public int update(User user) {
         try {
 
             return template.update(
