@@ -1,5 +1,6 @@
 package com.midwesttape.project.challengeapplication.service;
 
+import com.midwesttape.project.challengeapplication.mapper.UserRowMapper;
 import com.midwesttape.project.challengeapplication.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -18,14 +19,20 @@ public class UserService {
 
             return template.queryForObject(
                 "select " +
-                    "id, " +
-                    "firstName, " +
-                    "lastName, " +
-                    "username, " +
-                    "password " +
-                    "from User " +
-                    "where id = ?",
-                new BeanPropertyRowMapper<>(User.class),
+                    "user.id, " +
+                    "user.firstName, " +
+                    "user.lastName, " +
+                    "user.username, " +
+                    "user.password , " +
+                    " address.address1, " +
+                    "address.address2, " +
+                    "address.city, " +
+                    "address.state, " +
+                    "address.postal  " +
+                    "from User user " +
+                    "join Address address on user.id = address.id " +
+                    "where user.id =  ?",
+                new UserRowMapper(),
                 userId
             );
         } catch (EmptyResultDataAccessException e) {
